@@ -1,0 +1,30 @@
+install.packages("jsonlite",repos='http://cran.us.r-project.org')
+devtools::install_github("sailthru/tidyjson")
+install.packages("doParallel")
+install.packages(('BBmisc'))
+install.packages("DT") 
+
+suppressWarnings(suppressMessages(library(jsonlite)))
+suppressWarnings(suppressMessages(library(tidyjson)))
+suppressWarnings(suppressMessages(library(plyr)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(recommenderlab)))
+suppressWarnings(suppressMessages(library(knitr)))
+suppressWarnings(suppressMessages(library(tidyr)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+
+# user-item matrix
+suppressWarnings(suppressMessages(library(stringi)))
+suppressWarnings(suppressMessages(library(Matrix)))
+suppressWarnings(suppressMessages(library(DT)))
+
+# read data from Github repository
+business<- read.csv("https://raw.githubusercontent.com/YunMai-SPS/DA643/master/DA643_final_project/business.csv")
+
+user <- read.csv("https://raw.githubusercontent.com/YunMai-SPS/DA643/master/DA643_final_project/user_1.csv")
+
+for (i in c(2:4)){
+  a<- paste0(cat('"'),'https://raw.githubusercontent.com/YunMai-SPS/DA643/master/DA643_final_project/user_',i,'.csv',cat('"'))
+  user_1 <- read.csv(a)
+  user <- rbind(user, user_1)
+}
